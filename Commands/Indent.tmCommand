@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>beforeRunningCommand</key>
+	<string>nop</string>
+	<key>command</key>
+	<string>#!/usr/bin/env lua
+
+package.path = os.getenv("TM_BUNDLE_SUPPORT").."/?.lua"
+require"indent"
+local indented = ""
+local code = io.stdin:read("*all")
+local lib = IndentationLib
+if os.getenv("TM_SOFT_TABS")  == 'YES' then
+	indented = lib.indentCode(code)
+else 
+	indented = lib.indentCode(code, os.getenv("TM_TAB_SIZE"))
+end
+print(indented)
+</string>
+	<key>fallbackInput</key>
+	<string>document</string>
+	<key>input</key>
+	<string>selection</string>
+	<key>name</key>
+	<string>Indent</string>
+	<key>output</key>
+	<string>replaceSelectedText</string>
+	<key>scope</key>
+	<string>source.lua</string>
+	<key>uuid</key>
+	<string>FD24E781-6A62-46A3-871E-5F183CD07F70</string>
+</dict>
+</plist>
